@@ -1,5 +1,3 @@
--- Reyz Hub - Fast Attack (Thanhub Style)
-
 repeat wait() until game:IsLoaded()
 wait(2)
 
@@ -9,7 +7,6 @@ local RunService = game:GetService("RunService")
 
 _G.FastAttackV2 = false
 
--- Coba ambil CombatFramework
 local success, CombatFramework = pcall(function()
     return require(LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
 end)
@@ -20,7 +17,6 @@ if success and CombatFramework then
     controller = up[2]
 end
 
--- UI Setup (Fix tampil di semua executor)
 local gui = Instance.new("ScreenGui")
 gui.Name = "ReyzHubFastAttack"
 pcall(function()
@@ -55,5 +51,3 @@ RunService.RenderStepped:Connect(function()
         end)
     end
 end)
-
-print("✅ Reyz Hub Fast Attack V2 loaded.")
