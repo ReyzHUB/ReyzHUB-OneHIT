@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(2)
+wait(1)
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -18,18 +18,12 @@ if success and CombatFramework then
     controller = up[2]
 end
 
--- Setup UI
+-- UI Setup (di PlayerGui biar gak bentrok Delta)
 local gui = Instance.new("ScreenGui")
 gui.Name = "ReyzHubFastAttack"
 gui.ResetOnSpawn = false
-
--- Coba masuk ke CoreGui, kalau gagal pakai PlayerGui
-local ok = pcall(function()
-	gui.Parent = game:GetService("CoreGui")
-end)
-if not ok then
-	gui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-end
+gui.IgnoreGuiInset = true
+gui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
 -- Tombol Toggle
 local btn = Instance.new("TextButton")
@@ -43,6 +37,8 @@ btn.Font = Enum.Font.GothamBold
 btn.TextSize = 14
 btn.BorderSizePixel = 0
 btn.AutoButtonColor = false
+btn.Active = true
+btn.Draggable = true -- Bisa digeser
 
 btn.MouseButton1Click:Connect(function()
     _G.FastAttackV2 = not _G.FastAttackV2
@@ -62,4 +58,4 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
-print("✅ Reyz Hub Fast Attack Loaded.")
+print("✅ ReyzHub FastAttack UI Loaded (Delta Friendly)")
