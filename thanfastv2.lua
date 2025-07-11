@@ -1,5 +1,7 @@
 -- Reyz Hub - Fast Attack (Thanhub Style)
--- UI + Spam Attack Framework
+
+repeat wait() until game:IsLoaded()
+wait(2)
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -7,7 +9,7 @@ local RunService = game:GetService("RunService")
 
 _G.FastAttackV2 = false
 
--- Coba ambil CombatFramework (hanya jika sudah ada)
+-- Coba ambil CombatFramework
 local success, CombatFramework = pcall(function()
     return require(LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
 end)
@@ -18,11 +20,15 @@ if success and CombatFramework then
     controller = up[2]
 end
 
--- UI Setup
-local gui = Instance.new("ScreenGui", game.CoreGui)
+-- UI Setup (Fix tampil di semua executor)
+local gui = Instance.new("ScreenGui")
 gui.Name = "ReyzHubFastAttack"
+pcall(function()
+    gui.Parent = game:GetService("CoreGui")
+end)
 
-local btn = Instance.new("TextButton", gui)
+local btn = Instance.new("TextButton")
+btn.Parent = gui
 btn.Size = UDim2.new(0, 120, 0, 40)
 btn.Position = UDim2.new(0.02, 0, 0.3, 0)
 btn.Text = "Fast OFF"
